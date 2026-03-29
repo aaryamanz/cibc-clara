@@ -16,66 +16,57 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('spending')
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--cibc-off-white)' }}>
+    <div style={{ minHeight: '100vh', background: '#F4F4F4' }}>
       <Header />
 
-      {/* Hero */}
       <section style={{
-        background: 'linear-gradient(135deg, var(--cibc-navy) 0%, #1A2F4A 60%, #0D2040 100%)',
-        padding: '64px 24px 80px',
+        background: '#FFFFFF',
+        borderBottom: '1px solid #D8D8D8',
+        padding: '48px 24px 56px',
         textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
       }}>
-        {/* Background pattern */}
-        <div style={{
-          position: 'absolute', inset: 0, opacity: 0.04,
-          backgroundImage: 'radial-gradient(circle at 25% 25%, #C41230 0%, transparent 50%), radial-gradient(circle at 75% 75%, #C41230 0%, transparent 50%)',
-        }} />
-
-        <div style={{ position: 'relative', maxWidth: 720, margin: '0 auto', animation: 'fadeUp 0.6s ease forwards' }}>
-          {/* TGRP Badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'rgba(196,18,48,0.15)', border: '1px solid rgba(196,18,48,0.4)',
-            borderRadius: 100, padding: '6px 16px', marginBottom: 28,
+        <div style={{ maxWidth: 720, margin: '0 auto', animation: 'fadeUp 0.6s ease forwards' }}>
+          <p style={{
+            fontSize: 11, fontWeight: 700, color: '#C41230',
+            letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12,
           }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--cibc-red)', animation: 'pulse 2s infinite' }} />
-            <span style={{ fontSize: 12, fontWeight: 600, color: '#F5A0AC', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              TGRP Case Study · Live MVP
-            </span>
-          </div>
+            TGRP Case Study · Live MVP
+          </p>
 
-          <h1 style={{ fontSize: 'clamp(36px, 6vw, 64px)', color: 'white', marginBottom: 16 }}>
-            CIBC <span style={{ color: 'var(--cibc-red)', fontStyle: 'italic' }}>Clara</span>
+          <h1 style={{
+            fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, color: '#002855', marginBottom: 12,
+          }}>
+            CIBC <span style={{ color: '#C41230' }}>Clara</span>
           </h1>
-          <p style={{ fontSize: 18, color: '#94A3B8', maxWidth: 520, margin: '0 auto 12px', fontWeight: 400 }}>
+          <p style={{ fontSize: 17, color: '#6B6B6B', maxWidth: 520, margin: '0 auto 10px', fontWeight: 500 }}>
             Client-Led Agentic Recommendations & Advisor
           </p>
-          <p style={{ fontSize: 15, color: '#64748B', maxWidth: 560, margin: '0 auto 40px' }}>
+          <p style={{ fontSize: 15, color: '#6B6B6B', maxWidth: 560, margin: '0 auto 36px', fontWeight: 400 }}>
             Enter your monthly spending below. Clara analyses your patterns against every CIBC card,
             quantifies your reward gap, and tells you exactly how to close it.
           </p>
 
-          {/* Step indicators */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
             {[
               { num: '01', label: 'Your Spending', key: 'spending' },
               { num: '02', label: 'Reward Analysis', key: 'optimizer' },
               { num: '03', label: 'Ask Clara', key: 'chat' },
             ].map(step => (
               <div key={step.key} style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                background: activeSection === step.key ? 'rgba(196,18,48,0.2)' : 'rgba(255,255,255,0.05)',
-                border: `1px solid ${activeSection === step.key ? 'rgba(196,18,48,0.5)' : 'rgba(255,255,255,0.1)'}`,
-                borderRadius: 100, padding: '8px 16px',
-                transition: 'all 0.3s ease',
+                display: 'flex', alignItems: 'center', gap: 10,
+                background: '#FFFFFF',
+                border: `1px solid ${activeSection === step.key ? '#C41230' : '#D8D8D8'}`,
+                borderRadius: 6,
+                padding: '10px 18px',
+                transition: 'border-color 0.2s ease',
               }}>
                 <span style={{
-                  fontSize: 11, fontWeight: 700, color: activeSection === step.key ? 'var(--cibc-red)' : '#64748B',
-                  letterSpacing: '0.05em'
+                  fontSize: 11, fontWeight: 800, color: activeSection === step.key ? '#C41230' : '#6B6B6B',
+                  letterSpacing: '0.04em',
                 }}>{step.num}</span>
-                <span style={{ fontSize: 13, color: activeSection === step.key ? 'white' : '#64748B', fontWeight: 500 }}>
+                <span style={{
+                  fontSize: 14, color: activeSection === step.key ? '#2C2C2C' : '#6B6B6B', fontWeight: 600,
+                }}>
                   {step.label}
                 </span>
               </div>
@@ -84,10 +75,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* Main content */}
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px 80px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px 80px' }}>
 
-        {/* Section 1: Spending Input */}
         <div id="spending" style={{ marginBottom: 48 }}>
           <SpendingInput
             spending={spending}
@@ -102,7 +91,6 @@ export default function App() {
           />
         </div>
 
-        {/* Section 2: Reward Optimizer */}
         <div id="optimizer" style={{ marginBottom: 48 }}>
           <RewardOptimizer
             spending={spending}
@@ -117,25 +105,25 @@ export default function App() {
           />
         </div>
 
-        {/* Section 3: Clara Chat */}
         <div id="chat">
           <ClaraChat spending={spending} optimizerResult={optimizerResult} />
         </div>
       </div>
 
-      {/* Footer */}
       <footer style={{
-        background: 'var(--cibc-navy)',
-        borderTop: '3px solid var(--cibc-red)',
-        padding: '24px',
+        background: '#002855',
+        borderTop: '3px solid #C41230',
+        padding: '28px 24px',
         textAlign: 'center',
       }}>
-        <p style={{ fontSize: 13, color: '#475569' }}>
-          CIBC Clara · TGRP Case Study 2026 · Built by <strong style={{ color: '#64748B' }}>Aaryaman Singh</strong> ·
-          <span style={{ color: '#334155' }}> Mechanical Engineering, University of Toronto · CIBC E2E Optimization Co-op · CFA Level II Candidate</span>
+        <p style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 500 }}>
+          CIBC Clara · TGRP Case Study 2026 · Built by <strong style={{ fontWeight: 700 }}>Aaryaman Singh</strong>
         </p>
-        <p style={{ fontSize: 11, color: '#334155', marginTop: 6 }}>
-          MVP Demo — Reward rates sourced from CIBC's published card terms. This is a prototype for TGRP interview purposes only.
+        <p style={{ fontSize: 13, color: '#FFFFFF', marginTop: 6, opacity: 0.92 }}>
+          Mechanical Engineering, University of Toronto · CIBC E2E Optimization Co-op · CFA Level II Candidate
+        </p>
+        <p style={{ fontSize: 12, color: '#9CA3AF', marginTop: 14, maxWidth: 640, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.5 }}>
+          MVP Demo — Reward rates sourced from CIBC&apos;s published card terms. This is a prototype for TGRP interview purposes only.
         </p>
       </footer>
     </div>

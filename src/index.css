@@ -1,21 +1,18 @@
 :root {
   --cibc-red: #C41230;
+  --cibc-red-hover: #A00F28;
   --cibc-red-dark: #8F0D22;
-  --cibc-red-light: #F5E6E9;
-  --cibc-navy: #0D1B2E;
-  --cibc-navy-mid: #1A2F4A;
+  --cibc-navy: #002855;
   --cibc-white: #FFFFFF;
-  --cibc-off-white: #F7F8FA;
-  --cibc-silver: #E8ECF0;
-  --cibc-muted: #6B7A8D;
-  --cibc-green: #0A7A4F;
-  --cibc-green-light: #E6F5EF;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08);
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-lg: 20px;
+  --cibc-bg: #F4F4F4;
+  --cibc-border: #D8D8D8;
+  --cibc-text: #2C2C2C;
+  --cibc-muted: #6B6B6B;
+  --cibc-link: #C41230;
+  --cibc-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-card: 8px;
 }
 
 *, *::before, *::after {
@@ -29,31 +26,33 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cibc-off-white);
-  color: var(--cibc-navy);
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-weight: 400;
+  background: var(--cibc-bg);
+  color: var(--cibc-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 button {
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
 }
 
 input, textarea {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--cibc-off-white); }
-::-webkit-scrollbar-thumb { background: var(--cibc-silver); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--cibc-bg); }
+::-webkit-scrollbar-thumb { background: var(--cibc-border); border-radius: 3px; }
 
 /* Animations */
 @keyframes fadeUp {
@@ -82,4 +81,56 @@ input, textarea {
 
 .animate-fade-in {
   animation: fadeIn 0.3s ease forwards;
+}
+
+/* Range input — flat CIBC-style track */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--cibc-red) 0%,
+    var(--cibc-red) var(--slider-pct, 0%),
+    var(--cibc-border) var(--slider-pct, 0%),
+    var(--cibc-border) 100%
+  );
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--cibc-white);
+  border: 2px solid var(--cibc-red);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 2px;
+  background: var(--cibc-border);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 2px;
+  background: var(--cibc-red);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cibc-white);
+  border: 2px solid var(--cibc-red);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }

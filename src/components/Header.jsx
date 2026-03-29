@@ -1,66 +1,61 @@
 export default function Header() {
   return (
     <header style={{
-      background: 'white',
-      borderBottom: '1px solid var(--cibc-silver)',
+      background: '#FFFFFF',
+      borderBottom: '3px solid #C41230',
       position: 'sticky', top: 0, zIndex: 100,
-      boxShadow: 'var(--shadow-sm)',
     }}>
       <div style={{
-        maxWidth: 900, margin: '0 auto',
+        maxWidth: 1200, margin: '0 auto',
         padding: '0 24px',
-        height: 60,
+        height: 64,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
-        {/* CIBC Logo + Clara */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          {/* CIBC wordmark */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{
-              fontSize: 22, fontWeight: 900, color: 'var(--cibc-red)',
-              fontFamily: 'DM Sans, sans-serif', letterSpacing: '-0.02em'
+              fontSize: 22, fontWeight: 800, color: '#C41230',
+              letterSpacing: '-0.02em',
             }}>CIBC</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--cibc-red)">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#C41230" aria-hidden>
+              <path d="M12 2L22 12L12 22L2 12Z" />
             </svg>
           </div>
-          <div style={{ width: 1, height: 24, background: 'var(--cibc-silver)' }} />
+          <div style={{ width: 1, height: 26, background: '#D8D8D8' }} />
           <div>
             <span style={{
-              fontSize: 16, fontWeight: 700, color: 'var(--cibc-navy)',
-              fontFamily: 'DM Serif Display, serif',
+              fontSize: 17, fontWeight: 700, color: '#002855',
             }}>Clara</span>
             <span style={{
-              fontSize: 11, color: 'var(--cibc-muted)', display: 'block',
-              lineHeight: 1, marginTop: 1, fontWeight: 500
+              fontSize: 11, color: '#6B6B6B', display: 'block',
+              lineHeight: 1, marginTop: 2, fontWeight: 500,
             }}>Proactive Financial Intelligence</span>
           </div>
         </div>
 
-        {/* Nav links */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           {[
             { label: 'Spending', href: '#spending' },
             { label: 'Optimizer', href: '#optimizer' },
             { label: 'Ask Clara', href: '#chat' },
           ].map(link => (
             <a key={link.href} href={link.href} style={{
-              fontSize: 13, fontWeight: 500, color: 'var(--cibc-muted)',
-              textDecoration: 'none', padding: '6px 12px', borderRadius: 6,
-              transition: 'all 0.2s ease',
+              fontSize: 14, fontWeight: 600, color: '#2C2C2C',
+              textDecoration: 'none', padding: '8px 14px',
+              borderRadius: 4,
+              transition: 'color 0.2s ease',
             }}
-            onMouseEnter={e => { e.target.style.color = 'var(--cibc-red)'; e.target.style.background = 'var(--cibc-red-light)'; }}
-            onMouseLeave={e => { e.target.style.color = 'var(--cibc-muted)'; e.target.style.background = 'transparent'; }}
+            onMouseEnter={e => { e.target.style.color = '#C41230' }}
+            onMouseLeave={e => { e.target.style.color = '#2C2C2C' }}
             >
               {link.label}
             </a>
           ))}
-          <div style={{ width: 1, height: 20, background: 'var(--cibc-silver)', margin: '0 4px' }} />
-          <div style={{
-            fontSize: 11, fontWeight: 600, color: 'var(--cibc-red)',
-            background: 'var(--cibc-red-light)', padding: '4px 10px',
-            borderRadius: 100, letterSpacing: '0.04em',
-          }}>TGRP MVP</div>
+          <div style={{ width: 1, height: 20, background: '#D8D8D8', margin: '0 8px' }} />
+          <span style={{
+            fontSize: 11, fontWeight: 700, color: '#C41230',
+            letterSpacing: '0.06em', textTransform: 'uppercase',
+          }}>TGRP MVP</span>
         </nav>
       </div>
     </header>

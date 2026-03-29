@@ -8,10 +8,6 @@ const SUGGESTED_QUESTIONS = [
   "Which category gives me the best return?",
 ]
 
-function formatCAD(n) {
-  return `$${Math.abs(Math.round(n)).toLocaleString()}`
-}
-
 export default function ClaraChat({ spending, optimizerResult }) {
   const [messages, setMessages] = useState([
     {
@@ -79,70 +75,80 @@ export default function ClaraChat({ spending, optimizerResult }) {
     }
   }
 
+  const shell = {
+    background: '#FFFFFF',
+    borderRadius: 8,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+    overflow: 'hidden',
+    border: '1px solid #D8D8D8',
+  }
+
   return (
-    <div style={{
-      background: 'white', borderRadius: 'var(--radius-lg)',
-      boxShadow: 'var(--shadow-md)', overflow: 'hidden',
-      border: '1px solid var(--cibc-silver)',
-    }}>
-      {/* Header */}
+    <div style={shell}>
       <div style={{
-        background: 'linear-gradient(135deg, var(--cibc-navy) 0%, #1A3A5C 100%)',
-        padding: '20px 28px',
-        display: 'flex', alignItems: 'center', gap: 12,
+        padding: '22px 28px',
+        borderBottom: '1px solid #D8D8D8',
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: 16,
+        flexWrap: 'wrap',
       }}>
-        <div style={{
-          width: 32, height: 32, borderRadius: '50%',
-          background: 'rgba(196,18,48,0.3)', border: '2px solid var(--cibc-red)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 13, fontWeight: 700, color: 'white',
-        }}>03</div>
-        <div style={{ flex: 1 }}>
-          <h2 style={{ fontSize: 18, fontWeight: 700, color: 'white', fontFamily: 'DM Serif Display, serif' }}>
+        <div style={{ flex: '1 1 200px', borderLeft: '4px solid #C41230', paddingLeft: 18 }}>
+          <p style={{
+            fontSize: 11, fontWeight: 700, color: '#C41230',
+            letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6,
+          }}>03</p>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: '#002855' }}>
             Ask Clara
           </h2>
-          <p style={{ fontSize: 13, color: '#64748B', marginTop: 2 }}>
+          <p style={{ fontSize: 14, color: '#6B6B6B', marginTop: 6 }}>
             Conversational AI — powered by Claude · Analyses your real spending data
           </p>
         </div>
-        {/* Live indicator */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#10B981', animation: 'pulse 2s infinite' }} />
-          <span style={{ fontSize: 12, color: '#10B981', fontWeight: 600 }}>Live AI</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto', alignSelf: 'center' }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#C41230', animation: 'pulse 2s infinite' }} />
+          <span style={{ fontSize: 12, color: '#2C2C2C', fontWeight: 700 }}>Live AI</span>
         </div>
       </div>
 
-      {/* Suggested questions */}
       <div style={{
-        padding: '16px 24px', background: 'var(--cibc-off-white)',
-        borderBottom: '1px solid var(--cibc-silver)',
+        padding: '16px 24px', background: '#F4F4F4',
+        borderBottom: '1px solid #D8D8D8',
         display: 'flex', gap: 8, flexWrap: 'wrap',
         alignItems: 'center',
       }}>
-        <span style={{ fontSize: 12, color: 'var(--cibc-muted)', fontWeight: 600, whiteSpace: 'nowrap' }}>Try asking:</span>
+        <span style={{ fontSize: 12, color: '#6B6B6B', fontWeight: 700, whiteSpace: 'nowrap' }}>Try asking:</span>
         {SUGGESTED_QUESTIONS.map(q => (
-          <button key={q}
+          <button key={q} type="button"
             onClick={() => sendMessage(q)}
             disabled={loading}
             style={{
-              fontSize: 12, padding: '5px 12px',
-              background: 'white', border: '1px solid var(--cibc-silver)',
-              borderRadius: 100, cursor: 'pointer', color: 'var(--cibc-navy)',
-              transition: 'all 0.2s ease', whiteSpace: 'nowrap', fontWeight: 500,
+              fontSize: 12, padding: '6px 12px',
+              background: '#FFFFFF', border: '1px solid #D8D8D8',
+              borderRadius: 4, cursor: loading ? 'default' : 'pointer', color: '#2C2C2C',
+              transition: 'border-color 0.2s ease, color 0.2s ease', whiteSpace: 'nowrap', fontWeight: 600,
               opacity: loading ? 0.5 : 1,
             }}
-            onMouseEnter={e => { if (!loading) { e.currentTarget.style.borderColor = 'var(--cibc-red)'; e.currentTarget.style.color = 'var(--cibc-red)'; e.currentTarget.style.background = 'var(--cibc-red-light)'; }}}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--cibc-silver)'; e.currentTarget.style.color = 'var(--cibc-navy)'; e.currentTarget.style.background = 'white'; }}
+            onMouseEnter={e => {
+              if (!loading) {
+                e.currentTarget.style.borderColor = '#C41230'
+                e.currentTarget.style.color = '#C41230'
+              }
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = '#D8D8D8'
+              e.currentTarget.style.color = '#2C2C2C'
+            }}
           >
             {q}
           </button>
         ))}
       </div>
 
-      {/* Messages */}
       <div style={{
         height: 420, overflowY: 'auto', padding: '24px',
         display: 'flex', flexDirection: 'column', gap: 16,
+        background: '#F4F4F4',
       }}>
         {messages.map((msg, i) => (
           <div key={i} style={{
@@ -152,32 +158,30 @@ export default function ClaraChat({ spending, optimizerResult }) {
           }}>
             {msg.role === 'assistant' && (
               <div style={{
-                width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, var(--cibc-red) 0%, var(--cibc-red-dark) 100%)',
+                width: 32, height: 32, borderRadius: 4, flexShrink: 0,
+                background: '#C41230',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 14, color: 'white', fontWeight: 700,
+                fontSize: 14, color: '#FFFFFF', fontWeight: 700,
                 marginRight: 10, alignSelf: 'flex-end',
               }}>✦</div>
             )}
             <div style={{
               maxWidth: '72%',
-              padding: '13px 18px',
-              borderRadius: msg.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-              background: msg.role === 'user'
-                ? 'linear-gradient(135deg, var(--cibc-red) 0%, var(--cibc-red-dark) 100%)'
-                : 'var(--cibc-off-white)',
-              color: msg.role === 'user' ? 'white' : 'var(--cibc-navy)',
+              padding: '12px 16px',
+              borderRadius: 6,
+              background: msg.role === 'user' ? '#C41230' : '#FFFFFF',
+              color: msg.role === 'user' ? '#FFFFFF' : '#2C2C2C',
               fontSize: 14, lineHeight: 1.6,
-              border: msg.role === 'assistant' ? '1px solid var(--cibc-silver)' : 'none',
-              boxShadow: 'var(--shadow-sm)',
+              border: msg.role === 'assistant' ? '1px solid #D8D8D8' : 'none',
+              boxShadow: msg.role === 'assistant' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
               whiteSpace: 'pre-wrap',
             }}>
               {msg.content}
             </div>
             {msg.role === 'user' && (
               <div style={{
-                width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-                background: 'var(--cibc-silver)',
+                width: 32, height: 32, borderRadius: 4, flexShrink: 0,
+                background: '#D8D8D8',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 14, marginLeft: 10, alignSelf: 'flex-end',
               }}>👤</div>
@@ -185,24 +189,23 @@ export default function ClaraChat({ spending, optimizerResult }) {
           </div>
         ))}
 
-        {/* Loading indicator */}
         {loading && (
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 10 }}>
             <div style={{
-              width: 32, height: 32, borderRadius: '50%',
-              background: 'linear-gradient(135deg, var(--cibc-red) 0%, var(--cibc-red-dark) 100%)',
+              width: 32, height: 32, borderRadius: 4,
+              background: '#C41230',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 14, color: 'white', animation: 'pulse 1s infinite',
+              fontSize: 14, color: '#FFFFFF', animation: 'pulse 1s infinite',
             }}>✦</div>
             <div style={{
-              padding: '13px 18px', borderRadius: '18px 18px 18px 4px',
-              background: 'var(--cibc-off-white)', border: '1px solid var(--cibc-silver)',
+              padding: '12px 16px', borderRadius: 6,
+              background: '#FFFFFF', border: '1px solid #D8D8D8',
               display: 'flex', gap: 5, alignItems: 'center',
             }}>
               {[0, 1, 2].map(i => (
                 <div key={i} style={{
                   width: 7, height: 7, borderRadius: '50%',
-                  background: 'var(--cibc-red)',
+                  background: '#C41230',
                   animation: `pulse 1.2s ease ${i * 0.2}s infinite`,
                 }} />
               ))}
@@ -210,12 +213,11 @@ export default function ClaraChat({ spending, optimizerResult }) {
           </div>
         )}
 
-        {/* Error */}
         {error && (
           <div style={{
-            padding: '12px 16px', borderRadius: 'var(--radius-sm)',
-            background: '#FFF1F2', border: '1px solid #FCA5A5',
-            fontSize: 13, color: '#DC2626',
+            padding: '12px 16px', borderRadius: 6,
+            background: '#FFFFFF', border: '1px solid #C41230',
+            fontSize: 13, color: '#C41230', fontWeight: 600,
           }}>
             ⚠ {error}
           </div>
@@ -224,10 +226,9 @@ export default function ClaraChat({ spending, optimizerResult }) {
         <div ref={bottomRef} />
       </div>
 
-      {/* Input area */}
       <div style={{
-        padding: '16px 24px', borderTop: '1px solid var(--cibc-silver)',
-        background: 'white',
+        padding: '16px 24px', borderTop: '1px solid #D8D8D8',
+        background: '#FFFFFF',
         display: 'flex', gap: 10, alignItems: 'flex-end',
       }}>
         <textarea
@@ -239,45 +240,48 @@ export default function ClaraChat({ spending, optimizerResult }) {
           rows={1}
           style={{
             flex: 1, padding: '12px 16px',
-            border: '1.5px solid var(--cibc-silver)',
-            borderRadius: 'var(--radius)',
+            border: '1px solid #D8D8D8',
+            borderRadius: 4,
             fontSize: 14, resize: 'none',
             outline: 'none', lineHeight: 1.5,
             transition: 'border-color 0.2s ease',
-            fontFamily: 'DM Sans, sans-serif',
-            color: 'var(--cibc-navy)',
+            color: '#2C2C2C',
           }}
-          onFocus={e => e.target.style.borderColor = 'var(--cibc-red)'}
-          onBlur={e => e.target.style.borderColor = 'var(--cibc-silver)'}
+          onFocus={e => { e.target.style.borderColor = '#C41230' }}
+          onBlur={e => { e.target.style.borderColor = '#D8D8D8' }}
           onInput={e => {
             e.target.style.height = 'auto'
             e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px'
           }}
         />
         <button
+          type="button"
           onClick={() => sendMessage()}
           disabled={!input.trim() || loading}
           style={{
             width: 44, height: 44, borderRadius: '50%', border: 'none',
-            background: input.trim() && !loading ? 'var(--cibc-red)' : 'var(--cibc-silver)',
-            color: 'white', fontSize: 18, cursor: input.trim() && !loading ? 'pointer' : 'default',
+            background: input.trim() && !loading ? '#C41230' : '#D8D8D8',
+            color: '#FFFFFF', fontSize: 18, cursor: input.trim() && !loading ? 'pointer' : 'default',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'all 0.2s ease', flexShrink: 0,
+            transition: 'background 0.2s ease', flexShrink: 0,
           }}
-          onMouseEnter={e => { if (input.trim() && !loading) { e.currentTarget.style.background = 'var(--cibc-red-dark)'; e.currentTarget.style.transform = 'scale(1.05)'; }}}
-          onMouseLeave={e => { e.currentTarget.style.background = input.trim() && !loading ? 'var(--cibc-red)' : 'var(--cibc-silver)'; e.currentTarget.style.transform = 'none'; }}
+          onMouseEnter={e => {
+            if (input.trim() && !loading) e.currentTarget.style.background = '#A00F28'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = input.trim() && !loading ? '#C41230' : '#D8D8D8'
+          }}
         >
           {loading ? '⋯' : '↑'}
         </button>
       </div>
 
-      {/* Disclaimer */}
       <div style={{
-        padding: '10px 24px', background: 'var(--cibc-off-white)',
-        borderTop: '1px solid var(--cibc-silver)',
+        padding: '12px 24px', background: '#F4F4F4',
+        borderTop: '1px solid #D8D8D8',
       }}>
-        <p style={{ fontSize: 11, color: '#94A3B8', textAlign: 'center' }}>
-          Clara is an AI prototype. Reward rates sourced from CIBC's published card terms.
+        <p style={{ fontSize: 11, color: '#6B6B6B', textAlign: 'center', lineHeight: 1.5 }}>
+          Clara is an AI prototype. Reward rates sourced from CIBC&apos;s published card terms.
           Always verify with a CIBC advisor before applying. · Powered by Claude AI
         </p>
       </div>
