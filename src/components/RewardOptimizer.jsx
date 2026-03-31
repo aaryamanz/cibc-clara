@@ -133,7 +133,7 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
   return (
     <div style={cardShell}>
       <div style={{
-        padding: '22px 28px',
+        padding: '16px 20px',
         borderBottom: '1px solid #D8D8D8',
         display: 'flex',
         alignItems: 'flex-start',
@@ -157,7 +157,7 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
           onClick={handleAnalyse}
           style={{
             marginLeft: 'auto',
-            padding: '12px 24px',
+            padding: '10px 18px',
             background: '#FFFFFF',
             border: '2px solid #C41230',
             borderRadius: 4,
@@ -178,7 +178,7 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
         </button>
       </div>
 
-      <div style={{ padding: '28px' }}>
+      <div style={{ padding: '20px' }}>
         {animating && (
           <div style={{ textAlign: 'center', padding: '48px 0', animation: 'fadeIn 0.3s ease' }}>
             <div style={{
@@ -216,7 +216,7 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
                 background: '#FFFFFF',
                 border: '2px solid #C41230',
                 borderRadius: 6,
-                padding: '20px 24px', marginBottom: 28,
+                padding: '16px 18px', marginBottom: 18,
                 display: 'flex', alignItems: 'center', gap: 16,
                 boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
               }}>
@@ -238,8 +238,8 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-              gap: 20,
-              marginBottom: 28,
+              gap: 14,
+              marginBottom: 18,
             }}>
               {result.results.map(card => {
                 const isBest = card.id === result.best.id
@@ -249,7 +249,7 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
                     borderRadius: 6,
                     border: isBest ? '2px solid #C41230' : '1px solid #D8D8D8',
                     background: '#FFFFFF',
-                    padding: 16,
+                    padding: 12,
                     position: 'relative',
                     boxShadow: isBest ? '0 2px 8px rgba(196,18,48,0.12)' : '0 2px 8px rgba(0,0,0,0.08)',
                   }}>
@@ -277,7 +277,7 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
 
                     <h3 style={{
                       fontSize: 16, fontWeight: 700, color: '#002855',
-                      marginTop: 14, marginBottom: 8, lineHeight: 1.25,
+                      marginTop: 12, marginBottom: 6, lineHeight: 1.25,
                     }}>{card.name}</h3>
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 10 }}>

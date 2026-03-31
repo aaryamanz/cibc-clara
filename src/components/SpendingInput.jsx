@@ -27,7 +27,7 @@ export default function SpendingInput({ spending, setSpending, onAnalyse }) {
   return (
     <div style={cardStyle}>
       <div style={{
-        padding: '22px 28px',
+        padding: '16px 20px',
         borderBottom: '1px solid #D8D8D8',
         display: 'flex',
         alignItems: 'flex-start',
@@ -56,13 +56,13 @@ export default function SpendingInput({ spending, setSpending, onAnalyse }) {
         </div>
       </div>
 
-      <div style={{ padding: '28px' }}>
+      <div style={{ padding: '20px' }}>
         {CATEGORIES.map(cat => {
           const pct = (spending[cat.key] / cat.max) * 100
           return (
             <div key={cat.key} style={{
-              marginBottom: 20,
-              padding: '16px 18px',
+              marginBottom: 14,
+              padding: '12px 14px',
               borderRadius: 6,
               background: hovered === cat.key ? '#F4F4F4' : 'transparent',
               border: `1px solid ${hovered === cat.key ? '#D8D8D8' : 'transparent'}`,
@@ -104,7 +104,7 @@ export default function SpendingInput({ spending, setSpending, onAnalyse }) {
                 onChange={e => setSpending(prev => ({ ...prev, [cat.key]: Number(e.target.value) }))}
                 style={{
                   width: '100%',
-                  height: 24,
+                  height: 22,
                   ['--slider-pct']: `${pct}%`,
                 }}
               />

@@ -86,7 +86,7 @@ export default function ClaraChat({ spending, optimizerResult }) {
   return (
     <div style={shell}>
       <div style={{
-        padding: '22px 28px',
+        padding: '16px 20px',
         borderBottom: '1px solid #D8D8D8',
         display: 'flex',
         alignItems: 'flex-start',
@@ -112,7 +112,7 @@ export default function ClaraChat({ spending, optimizerResult }) {
       </div>
 
       <div style={{
-        padding: '16px 24px', background: '#F4F4F4',
+        padding: '12px 16px', background: '#F4F4F4',
         borderBottom: '1px solid #D8D8D8',
         display: 'flex', gap: 8, flexWrap: 'wrap',
         alignItems: 'center',
@@ -146,7 +146,7 @@ export default function ClaraChat({ spending, optimizerResult }) {
       </div>
 
       <div style={{
-        height: 420, overflowY: 'auto', padding: '24px',
+        height: 380, overflowY: 'auto', padding: '16px',
         display: 'flex', flexDirection: 'column', gap: 16,
         background: '#F4F4F4',
       }}>
@@ -227,7 +227,7 @@ export default function ClaraChat({ spending, optimizerResult }) {
       </div>
 
       <div style={{
-        padding: '16px 24px', borderTop: '1px solid #D8D8D8',
+        padding: '12px 16px', borderTop: '1px solid #D8D8D8',
         background: '#FFFFFF',
         display: 'flex', gap: 10, alignItems: 'flex-end',
       }}>
@@ -277,7 +277,7 @@ export default function ClaraChat({ spending, optimizerResult }) {
       </div>
 
       <div style={{
-        padding: '12px 24px', background: '#F4F4F4',
+        padding: '10px 16px', background: '#F4F4F4',
         borderTop: '1px solid #D8D8D8',
       }}>
         <p style={{ fontSize: 11, color: '#6B6B6B', textAlign: 'center', lineHeight: 1.5 }}>

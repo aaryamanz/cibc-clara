@@ -30,7 +30,7 @@ export default function App() {
       <section style={{
         background: '#FFFFFF',
         borderBottom: '1px solid #D8D8D8',
-        padding: '48px 24px 56px',
+        padding: '32px 24px 36px',
         textAlign: 'center',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto', animation: 'fadeUp 0.6s ease forwards' }}>
@@ -49,7 +49,7 @@ export default function App() {
           <p style={{ fontSize: 17, color: '#6B6B6B', maxWidth: 520, margin: '0 auto 10px', fontWeight: 500 }}>
             Client-Led Agentic Recommendations & Advisor
           </p>
-          <p style={{ fontSize: 15, color: '#6B6B6B', maxWidth: 560, margin: '0 auto 36px', fontWeight: 400 }}>
+          <p style={{ fontSize: 15, color: '#6B6B6B', maxWidth: 560, margin: '0 auto 22px', fontWeight: 400 }}>
             Enter your monthly spending below. Clara analyses your patterns against every CIBC card,
             quantifies your reward gap, and tells you exactly how to close it.
           </p>
@@ -83,9 +83,16 @@ export default function App() {
         </div>
       </section>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px 80px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '28px 24px 56px' }}>
+        <div style={{
+          background: '#FFFFFF',
+          border: '1px solid #D8D8D8',
+          borderRadius: 8,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+          padding: 18,
+        }}>
 
-        <div id="spending" style={{ marginBottom: 48 }}>
+        <div id="spending" style={{ marginBottom: 24 }}>
           <SpendingInput
             spending={spending}
             setSpending={setSpending}
@@ -99,7 +106,7 @@ export default function App() {
           />
         </div>
 
-        <div id="optimizer" style={{ marginBottom: 48 }}>
+        <div id="optimizer" style={{ marginBottom: 24 }}>
           <RewardOptimizer
             spending={spending}
             result={optimizerResult}
@@ -115,6 +122,7 @@ export default function App() {
 
         <div id="chat">
           <ClaraChat spending={spending} optimizerResult={optimizerResult} />
+        </div>
         </div>
       </div>
 
