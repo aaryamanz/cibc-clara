@@ -8,18 +8,18 @@ export default function Header() {
       <div style={{
         maxWidth: 1200, margin: '0 auto',
         padding: '0 24px',
-        height: 64,
+        height: 60,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
-              style={{ height: 28, width: 'auto', display: 'block' }}
+              style={{ height: 32, width: 'auto', display: 'block' }}
             />
           </div>
-          <div style={{ width: 1, height: 26, background: '#D8D8D8' }} />
+          <div style={{ width: 1, height: 28, background: '#D8D8D8' }} />
           <div>
             <span style={{
               fontSize: 17, fontWeight: 700, color: '#002855',
@@ -39,7 +39,7 @@ export default function Header() {
           ].map(link => (
             <a key={link.href} href={link.href} style={{
               fontSize: 14, fontWeight: 600, color: '#2C2C2C',
-              textDecoration: 'none', padding: '8px 14px',
+              textDecoration: 'none', padding: '7px 12px',
               borderRadius: 4,
               transition: 'color 0.2s ease',
             }}
