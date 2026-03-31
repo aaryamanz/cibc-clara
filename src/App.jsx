@@ -30,13 +30,13 @@ export default function App() {
       <section style={{
         background: '#FFFFFF',
         borderBottom: '1px solid #D8D8D8',
-        padding: '34px 24px 38px',
+        padding: '22px 24px 24px',
         textAlign: 'center',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto', animation: 'fadeUp 0.6s ease forwards' }}>
           <p style={{
             fontSize: 11, fontWeight: 700, color: '#C41230',
-            letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12,
+            letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8,
           }}>
             TGRP Case Study · Live MVP
           </p>
@@ -47,7 +47,7 @@ export default function App() {
             justifyContent: 'center',
             gap: 16,
             flexWrap: 'wrap',
-            marginBottom: 12,
+            marginBottom: 8,
           }}>
             <img
               src="/cibc-logo.svg"
@@ -65,10 +65,10 @@ export default function App() {
               Clara
             </h1>
           </div>
-          <p style={{ fontSize: 17, color: '#6B6B6B', maxWidth: 520, margin: '0 auto 10px', fontWeight: 500 }}>
+          <p style={{ fontSize: 16, color: '#6B6B6B', maxWidth: 520, margin: '0 auto 8px', fontWeight: 600 }}>
             Client-Led Agentic Recommendations & Advisor
           </p>
-          <p style={{ fontSize: 15, color: '#6B6B6B', maxWidth: 560, margin: '0 auto 22px', fontWeight: 400 }}>
+          <p style={{ fontSize: 14, color: '#6B6B6B', maxWidth: 560, margin: '0 auto 14px', fontWeight: 400 }}>
             Enter your monthly spending below. Clara analyses your patterns against every CIBC card,
             quantifies your reward gap, and tells you exactly how to close it.
           </p>
@@ -78,7 +78,7 @@ export default function App() {
             justifyContent: 'center',
             gap: 10,
             flexWrap: 'wrap',
-            padding: 8,
+            padding: 6,
             border: '1px solid #D8D8D8',
             borderRadius: 8,
             background: '#F4F4F4',
@@ -93,7 +93,7 @@ export default function App() {
                 background: '#FFFFFF',
                 border: `1px solid ${activeSection === step.key ? '#C41230' : '#D8D8D8'}`,
                 borderRadius: 6,
-                padding: '9px 16px',
+                padding: '8px 14px',
                 transition: 'border-color 0.2s ease',
               }}>
                 <span style={{
@@ -111,16 +111,16 @@ export default function App() {
         </div>
       </section>
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '28px 24px 56px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '18px 24px 40px' }}>
         <div style={{
           background: '#FFFFFF',
           border: '1px solid #D8D8D8',
           borderRadius: 8,
           boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-          padding: 18,
+          padding: 14,
         }}>
 
-        <div id="spending" style={{ marginBottom: 24 }}>
+        <div id="spending" style={{ marginBottom: 18 }}>
           <SpendingInput
             spending={spending}
             setSpending={setSpending}
@@ -134,7 +134,7 @@ export default function App() {
           />
         </div>
 
-        <div id="optimizer" style={{ marginBottom: 24 }}>
+        <div id="optimizer" style={{ marginBottom: 18 }}>
           <RewardOptimizer
             spending={spending}
             result={optimizerResult}
