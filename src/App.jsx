@@ -30,7 +30,7 @@ export default function App() {
       <section style={{
         background: '#FFFFFF',
         borderBottom: '1px solid #D8D8D8',
-        padding: '32px 24px 36px',
+        padding: '34px 24px 38px',
         textAlign: 'center',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto', animation: 'fadeUp 0.6s ease forwards' }}>
@@ -43,25 +43,29 @@ export default function App() {
 
           <div style={{
             display: 'flex',
-            alignItems: 'baseline',
+            alignItems: 'center',
             justifyContent: 'center',
-            gap: 12,
+            gap: 16,
             flexWrap: 'wrap',
-            marginBottom: 10,
+            marginBottom: 12,
           }}>
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
-              style={{ height: 40, width: 'auto', display: 'block' }}
+              style={{ height: 42, width: 'auto', display: 'block' }}
             />
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden style={{ display: 'block' }}>
+              <path d="M12 2L22 12L12 22L2 12Z" fill="#C41230" />
+            </svg>
             <h1 style={{
               fontSize: 'clamp(34px, 5vw, 56px)',
               fontWeight: 800,
-              color: '#002855',
+              color: '#C41230',
               marginBottom: 0,
               lineHeight: 1,
+              letterSpacing: '-0.01em',
             }}>
-              <span style={{ color: '#C41230' }}>Clara</span>
+              Clara
             </h1>
           </div>
           <p style={{ fontSize: 17, color: '#6B6B6B', maxWidth: 520, margin: '0 auto 10px', fontWeight: 500 }}>
@@ -72,7 +76,16 @@ export default function App() {
             quantifies your reward gap, and tells you exactly how to close it.
           </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
+          <div style={{
+            display: 'inline-flex',
+            justifyContent: 'center',
+            gap: 10,
+            flexWrap: 'wrap',
+            padding: 8,
+            border: '1px solid #D8D8D8',
+            borderRadius: 8,
+            background: '#F4F4F4',
+          }}>
             {[
               { num: '01', label: 'Your Spending', key: 'spending' },
               { num: '02', label: 'Reward Analysis', key: 'optimizer' },
@@ -83,7 +96,7 @@ export default function App() {
                 background: '#FFFFFF',
                 border: `1px solid ${activeSection === step.key ? '#C41230' : '#D8D8D8'}`,
                 borderRadius: 6,
-                padding: '10px 18px',
+                padding: '9px 16px',
                 transition: 'border-color 0.2s ease',
               }}>
                 <span style={{

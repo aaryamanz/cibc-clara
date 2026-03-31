@@ -11,18 +11,18 @@ export default function Header() {
         height: 60,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
               style={{ height: 32, width: 'auto', display: 'block' }}
             />
+            <div style={{ width: 1, height: 26, background: '#D8D8D8' }} />
           </div>
-          <div style={{ width: 1, height: 28, background: '#D8D8D8' }} />
-          <div>
+          <div style={{ position: 'relative', top: 1 }}>
             <span style={{
-              fontSize: 17, fontWeight: 700, color: '#002855',
+              fontSize: 17, fontWeight: 800, color: '#C41230',
             }}>Clara</span>
             <span style={{
               fontSize: 11, color: '#6B6B6B', display: 'block',
