@@ -52,7 +52,7 @@ export default function App() {
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
-              style={{ height: 44, width: 'auto', display: 'block' }}
+              style={{ height: 48, width: 'auto', display: 'block' }}
             />
             <h1 style={{
               fontSize: 'clamp(32px, 4.6vw, 52px)',

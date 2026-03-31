@@ -16,7 +16,7 @@ export default function Header() {
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
-              style={{ height: 32, width: 'auto', display: 'block' }}
+              style={{ height: 35, width: 'auto', display: 'block' }}
             />
             <div style={{ width: 1, height: 26, background: '#D8D8D8' }} />
           </div>
