@@ -52,13 +52,10 @@ export default function App() {
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
-              style={{ height: 42, width: 'auto', display: 'block' }}
+              style={{ height: 44, width: 'auto', display: 'block' }}
             />
-            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden style={{ display: 'block' }}>
-              <path d="M12 2L22 12L12 22L2 12Z" fill="#C41230" />
-            </svg>
             <h1 style={{
-              fontSize: 'clamp(34px, 5vw, 56px)',
+              fontSize: 'clamp(32px, 4.6vw, 52px)',
               fontWeight: 800,
               color: '#C41230',
               marginBottom: 0,
