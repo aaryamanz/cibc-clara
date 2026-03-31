@@ -13,13 +13,11 @@ export default function Header() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{
-              fontSize: 22, fontWeight: 800, color: '#C41230',
-              letterSpacing: '-0.02em',
-            }}>CIBC</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#C41230" aria-hidden>
-              <path d="M12 2L22 12L12 22L2 12Z" />
-            </svg>
+            <img
+              src="/cibc-logo.svg"
+              alt="CIBC"
+              style={{ height: 28, width: 'auto', display: 'block' }}
+            />
           </div>
           <div style={{ width: 1, height: 26, background: '#D8D8D8' }} />
           <div>

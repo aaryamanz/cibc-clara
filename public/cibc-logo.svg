@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="64" viewBox="0 0 220 64" role="img" aria-label="CIBC">
+  <title>CIBC</title>
+  <g fill="none" fill-rule="evenodd">
+    <g fill="#C41230">
+      <text x="0" y="46"
+            font-family="Nunito Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+            font-size="54"
+            font-weight="800"
+            letter-spacing="-1">CIBC</text>
+      <path d="M193.5 11.5 215 32 193.5 52.5 173 32z"/>
+      <path d="M193.5 11.5 183.5 21.2 194.3 32 183.5 42.8 193.5 52.5 215 32z" fill="#8F0D22" opacity=".85"/>
+    </g>
+  </g>
+</svg>

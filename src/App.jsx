@@ -41,11 +41,25 @@ export default function App() {
             TGRP Case Study · Live MVP
           </p>
 
-          <h1 style={{
-            fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, color: '#002855', marginBottom: 12,
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 12,
+            flexWrap: 'wrap',
+            marginBottom: 10,
           }}>
-            CIBC <span style={{ color: '#C41230' }}>Clara</span>
-          </h1>
+            <img
+              src="/cibc-logo.svg"
+              alt="CIBC"
+              style={{ height: 34, width: 'auto', display: 'block' }}
+            />
+            <h1 style={{
+              fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, color: '#002855', marginBottom: 0,
+            }}>
+              <span style={{ color: '#C41230' }}>Clara</span>
+            </h1>
+          </div>
           <p style={{ fontSize: 17, color: '#6B6B6B', maxWidth: 520, margin: '0 auto 10px', fontWeight: 500 }}>
             Client-Led Agentic Recommendations & Advisor
           </p>
