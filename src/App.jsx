@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header.jsx'
 import SpendingInput from './components/SpendingInput.jsx'
 import RewardOptimizer from './components/RewardOptimizer.jsx'
@@ -14,6 +14,14 @@ export default function App() {
   })
   const [optimizerResult, setOptimizerResult] = useState(null)
   const [activeSection, setActiveSection] = useState('spending')
+
+  useEffect(() => {
+    // On first load, always start at the top (fixes unwanted deep-linking / restored scroll).
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }, [])
 
   return (
     <div style={{ minHeight: '100vh', background: '#F4F4F4' }}>
