@@ -1,5 +1,9 @@
 import { Fragment, useEffect, useState } from 'react'
 import CreditCardFace from './CreditCardFace.jsx'
+import dividendClassicImg from '../assets/cards/dividend-visa-classic.png'
+import dividendPlatinumImg from '../assets/cards/dividend-platinum-visa.png'
+import dividendInfiniteImg from '../assets/cards/dividend-visa-infinite.png'
+import costcoMastercardImg from '../assets/cards/costco-mastercard.png'
 
 const CIBC_CARDS = [
   {
@@ -13,6 +17,7 @@ const CIBC_CARDS = [
     desc: 'Best no-fee everyday card',
     gradient: 'linear-gradient(135deg, #1A1A2E 0%, #16213E 100%)',
     network: 'visa',
+    image: dividendClassicImg,
     footnote: null,
   },
   {
@@ -26,6 +31,7 @@ const CIBC_CARDS = [
     desc: 'Great for gas & groceries',
     gradient: 'linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 100%)',
     network: 'visa',
+    image: dividendPlatinumImg,
     footnote: null,
   },
   {
@@ -39,6 +45,7 @@ const CIBC_CARDS = [
     desc: 'Maximum rewards on daily essentials',
     gradient: 'linear-gradient(135deg, #C41230 0%, #8F0D22 100%)',
     network: 'visa',
+    image: dividendInfiniteImg,
     footnote: '$60,000 personal annual income required',
   },
   {
@@ -52,6 +59,7 @@ const CIBC_CARDS = [
     desc: 'Best for dining & Costco members',
     gradient: 'linear-gradient(135deg, #005DAA 0%, #003F7A 100%)',
     network: 'mastercard',
+    image: costcoMastercardImg,
     footnote: 'Costco membership required',
   },
 ]
@@ -245,11 +253,27 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
                     position: 'relative',
                     boxShadow: isBest ? '0 2px 8px rgba(196,18,48,0.12)' : '0 2px 8px rgba(0,0,0,0.08)',
                   }}>
-                    <CreditCardFace
-                      gradient={card.gradient}
-                      cardName={card.name}
-                      network={card.network}
-                    />
+                    {card.image ? (
+                      <div style={{ width: '100%', aspectRatio: '1.586 / 1' }}>
+                        <img
+                          src={card.image}
+                          alt={card.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            display: 'block',
+                            objectFit: 'cover',
+                            borderRadius: 8,
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <CreditCardFace
+                        gradient={card.gradient}
+                        cardName={card.name}
+                        network={card.network}
+                      />
+                    )}
 
                     <h3 style={{
                       fontSize: 16, fontWeight: 700, color: '#002855',
