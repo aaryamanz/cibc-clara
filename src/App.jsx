@@ -43,7 +43,7 @@ export default function App() {
 
           <div style={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'baseline',
             justifyContent: 'center',
             gap: 12,
             flexWrap: 'wrap',
@@ -52,10 +52,14 @@ export default function App() {
             <img
               src="/cibc-logo.svg"
               alt="CIBC"
-              style={{ height: 34, width: 'auto', display: 'block' }}
+              style={{ height: 40, width: 'auto', display: 'block' }}
             />
             <h1 style={{
-              fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 800, color: '#002855', marginBottom: 0,
+              fontSize: 'clamp(34px, 5vw, 56px)',
+              fontWeight: 800,
+              color: '#002855',
+              marginBottom: 0,
+              lineHeight: 1,
             }}>
               <span style={{ color: '#C41230' }}>Clara</span>
             </h1>
@@ -141,18 +145,18 @@ export default function App() {
       </div>
 
       <footer style={{
-        background: '#002855',
+        background: '#000000',
         borderTop: '3px solid #C41230',
         padding: '28px 24px',
         textAlign: 'center',
       }}>
-        <p style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 500 }}>
+        <p style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 600 }}>
           CIBC Clara · TGRP Case Study 2026 · Built by <strong style={{ fontWeight: 700 }}>Aaryaman Singh</strong>
         </p>
-        <p style={{ fontSize: 13, color: '#FFFFFF', marginTop: 6, opacity: 0.92 }}>
+        <p style={{ fontSize: 13, color: '#FFFFFF', marginTop: 6, opacity: 0.88 }}>
           Mechanical Engineering, University of Toronto · CIBC E2E Optimization Co-op · CFA Level II Candidate
         </p>
-        <p style={{ fontSize: 12, color: '#9CA3AF', marginTop: 14, maxWidth: 640, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 12, color: '#BDBDBD', marginTop: 14, maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6 }}>
           MVP Demo — Reward rates sourced from CIBC&apos;s published card terms. This is a prototype for TGRP interview purposes only.
         </p>
       </footer>
