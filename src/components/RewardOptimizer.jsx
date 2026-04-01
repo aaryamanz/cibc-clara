@@ -217,20 +217,32 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
                 border: '2px solid #C41230',
                 borderRadius: 6,
                 padding: '16px 18px', marginBottom: 18,
-                display: 'flex', alignItems: 'center', gap: 16,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                boxShadow: '0 2px 8px rgba(196,18,48,0.10)',
               }}>
-                <div style={{ fontSize: 32 }}>⚠️</div>
-                <div>
-                  <p style={{ fontSize: 14, color: '#2C2C2C', fontWeight: 600 }}>
-                    Based on your spending, you&apos;re currently leaving
-                  </p>
-                  <p style={{ fontSize: 28, fontWeight: 800, color: '#C41230', lineHeight: 1.15, marginTop: 4 }}>
-                    {formatCAD(result.gap)}/year
-                  </p>
-                  <p style={{ fontSize: 13, color: '#6B6B6B', marginTop: 6 }}>
-                    in unclaimed rewards — switch to the {result.best.shortName} to close the gap
-                  </p>
+                <p style={{ fontSize: 11, fontWeight: 700, color: '#C41230', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>
+                  ⚠ Reward Gap Detected
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <div style={{
+                    flex: '1 1 160px', background: '#F4F4F4', borderRadius: 6,
+                    padding: '12px 16px', border: '1px solid #D8D8D8',
+                  }}>
+                    <p style={{ fontSize: 11, color: '#6B6B6B', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>Current Card</p>
+                    <p style={{ fontSize: 14, fontWeight: 700, color: '#2C2C2C', marginBottom: 4 }}>{result.current.shortName}</p>
+                    <p style={{ fontSize: 22, fontWeight: 800, color: '#6B6B6B' }}>{formatCAD(result.current.annual)}<span style={{ fontSize: 13, fontWeight: 600 }}>/yr</span></p>
+                  </div>
+                  <div style={{ textAlign: 'center', flexShrink: 0 }}>
+                    <p style={{ fontSize: 22, color: '#D8D8D8', lineHeight: 1 }}>→</p>
+                    <p style={{ fontSize: 13, fontWeight: 800, color: '#C41230', marginTop: 4 }}>+{formatCAD(result.gap)}/yr</p>
+                  </div>
+                  <div style={{
+                    flex: '1 1 160px', background: '#FFF5F6', borderRadius: 6,
+                    padding: '12px 16px', border: '2px solid #C41230',
+                  }}>
+                    <p style={{ fontSize: 11, color: '#C41230', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>Best for You</p>
+                    <p style={{ fontSize: 14, fontWeight: 700, color: '#2C2C2C', marginBottom: 4 }}>{result.best.shortName}</p>
+                    <p style={{ fontSize: 22, fontWeight: 800, color: '#C41230' }}>{formatCAD(result.best.annual)}<span style={{ fontSize: 13, fontWeight: 600 }}>/yr</span></p>
+                  </div>
                 </div>
               </div>
             )}
@@ -241,11 +253,12 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
               gap: 14,
               marginBottom: 18,
             }}>
-              {result.results.map(card => {
+              {result.results.map((card, rankIndex) => {
                 const isBest = card.id === result.best.id
                 const isCurrent = card.id === 'classic'
+                const rank = rankIndex + 1
                 return (
-                  <div key={card.id} style={{
+                  <div key={card.id} className="card-hover" style={{
                     borderRadius: 6,
                     border: isBest ? '2px solid #C41230' : '1px solid #D8D8D8',
                     background: '#FFFFFF',
@@ -275,10 +288,22 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
                       />
                     )}
 
-                    <h3 style={{
-                      fontSize: 16, fontWeight: 700, color: '#002855',
-                      marginTop: 12, marginBottom: 6, lineHeight: 1.25,
-                    }}>{card.name}</h3>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, marginBottom: 6 }}>
+                      <h3 style={{
+                        fontSize: 16, fontWeight: 700, color: '#002855',
+                        lineHeight: 1.25, margin: 0,
+                      }}>{card.name}</h3>
+                      <span style={{
+                        fontSize: 11, fontWeight: 800,
+                        color: rank === 1 ? '#C41230' : '#6B6B6B',
+                        background: rank === 1 ? '#FFF5F6' : '#F4F4F4',
+                        border: `1px solid ${rank === 1 ? '#C41230' : '#D8D8D8'}`,
+                        borderRadius: 4,
+                        padding: '3px 7px',
+                        letterSpacing: '0.04em',
+                        flexShrink: 0,
+                      }}>#{rank}</span>
+                    </div>
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                       <span style={{
@@ -367,13 +392,14 @@ export default function RewardOptimizer({ spending, result, setResult, onChatOpe
                 <span style={{ fontSize: 12, color: '#6B6B6B', fontWeight: 700, borderBottom: '1px solid #D8D8D8', paddingBottom: 6 }}>Category</span>
                 <span style={{ fontSize: 12, color: '#6B6B6B', fontWeight: 700, textAlign: 'right', borderBottom: '1px solid #D8D8D8', paddingBottom: 6 }}>Monthly Spend</span>
                 <span style={{ fontSize: 12, color: '#6B6B6B', fontWeight: 700, textAlign: 'right', borderBottom: '1px solid #D8D8D8', paddingBottom: 6 }}>Annual Reward</span>
-                {Object.entries(spending).map(([cat, amt]) => {
+                {Object.entries(spending).map(([cat, amt], i) => {
                   const reward = Math.round(amt * result.best.rates[cat] * 12)
+                  const rowBg = i % 2 === 0 ? '#FFFFFF' : 'transparent'
                   return (
                     <Fragment key={cat}>
-                      <span style={{ fontSize: 13, color: '#2C2C2C', textTransform: 'capitalize', padding: '4px 0' }}>{cat}</span>
-                      <span style={{ fontSize: 13, color: '#6B6B6B', textAlign: 'right', padding: '4px 0' }}>${amt.toLocaleString()}/mo</span>
-                      <span style={{ fontSize: 13, fontWeight: 700, color: '#002855', textAlign: 'right', padding: '4px 0' }}>+${reward}</span>
+                      <span style={{ fontSize: 13, color: '#2C2C2C', textTransform: 'capitalize', padding: '5px 6px', background: rowBg, borderRadius: '4px 0 0 4px' }}>{cat}</span>
+                      <span style={{ fontSize: 13, color: '#6B6B6B', textAlign: 'right', padding: '5px 6px', background: rowBg }}>${amt.toLocaleString()}/mo</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: '#002855', textAlign: 'right', padding: '5px 6px', background: rowBg, borderRadius: '0 4px 4px 0' }}>+${reward}</span>
                     </Fragment>
                   )
                 })}

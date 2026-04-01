@@ -14,6 +14,7 @@ export default function App() {
   })
   const [optimizerResult, setOptimizerResult] = useState(null)
   const [activeSection, setActiveSection] = useState('spending')
+  const [spendingSubmitted, setSpendingSubmitted] = useState(false)
 
   useEffect(() => {
     // On first load, always start at the top (fixes unwanted deep-linking / restored scroll).
@@ -21,6 +22,22 @@ export default function App() {
     if (window.location.hash) {
       window.history.replaceState(null, '', window.location.pathname + window.location.search)
     }
+  }, [])
+
+  useEffect(() => {
+    function handleScroll() {
+      const sections = ['spending', 'optimizer', 'chat']
+      for (const id of [...sections].reverse()) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(id)
+          return
+        }
+      }
+      setActiveSection('spending')
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
@@ -84,29 +101,41 @@ export default function App() {
             background: '#F4F4F4',
           }}>
             {[
-              { num: '01', label: 'Your Spending', key: 'spending' },
-              { num: '02', label: 'Reward Analysis', key: 'optimizer' },
-              { num: '03', label: 'Ask Clara', key: 'chat' },
-            ].map(step => (
-              <div key={step.key} style={{
-                display: 'flex', alignItems: 'center', gap: 10,
-                background: '#FFFFFF',
-                border: `1px solid ${activeSection === step.key ? '#C41230' : '#D8D8D8'}`,
-                borderRadius: 6,
-                padding: '8px 14px',
-                transition: 'border-color 0.2s ease',
-              }}>
-                <span style={{
-                  fontSize: 11, fontWeight: 800, color: activeSection === step.key ? '#C41230' : '#6B6B6B',
-                  letterSpacing: '0.04em',
-                }}>{step.num}</span>
-                <span style={{
-                  fontSize: 14, color: activeSection === step.key ? '#2C2C2C' : '#6B6B6B', fontWeight: 600,
-                }}>
-                  {step.label}
-                </span>
-              </div>
-            ))}
+              { num: '01', label: 'Your Spending', key: 'spending', done: spendingSubmitted },
+              { num: '02', label: 'Reward Analysis', key: 'optimizer', done: !!optimizerResult },
+              { num: '03', label: 'Ask Clara', key: 'chat', done: false },
+            ].map(step => {
+              const isActive = activeSection === step.key
+              const isDone = step.done && !isActive
+              return (
+                <button
+                  key={step.key}
+                  onClick={() => document.getElementById(step.key)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 10,
+                    background: isDone ? '#002855' : '#FFFFFF',
+                    border: `1px solid ${isActive ? '#C41230' : isDone ? '#002855' : '#D8D8D8'}`,
+                    borderRadius: 6,
+                    padding: '8px 14px',
+                    transition: 'border-color 0.2s ease, background 0.2s ease',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span style={{
+                    fontSize: 11, fontWeight: 800,
+                    color: isActive ? '#C41230' : isDone ? '#FFFFFF' : '#6B6B6B',
+                    letterSpacing: '0.04em',
+                  }}>{isDone ? '✓' : step.num}</span>
+                  <span style={{
+                    fontSize: 14,
+                    color: isActive ? '#2C2C2C' : isDone ? '#FFFFFF' : '#6B6B6B',
+                    fontWeight: 600,
+                  }}>
+                    {step.label}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -125,6 +154,7 @@ export default function App() {
             spending={spending}
             setSpending={setSpending}
             onAnalyse={() => {
+              setSpendingSubmitted(true)
               setOptimizerResult(null)
               setActiveSection('optimizer')
               setTimeout(() => {

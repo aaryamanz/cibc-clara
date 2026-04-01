@@ -111,11 +111,40 @@ export default function ClaraChat({ spending, optimizerResult }) {
         </div>
       </div>
 
+      {(spending || optimizerResult) && (
+        <div style={{
+          padding: '8px 16px', background: '#FFFFFF',
+          borderBottom: '1px solid #D8D8D8',
+          display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center',
+        }}>
+          <span style={{ fontSize: 11, color: '#6B6B6B', fontWeight: 700, whiteSpace: 'nowrap' }}>Clara sees:</span>
+          {spending && (
+            <span style={{
+              fontSize: 11, fontWeight: 700, color: '#002855',
+              background: '#F4F4F4', border: '1px solid #D8D8D8',
+              borderRadius: 4, padding: '3px 8px', whiteSpace: 'nowrap',
+            }}>
+              📊 ${Object.values(spending).reduce((a, b) => a + b, 0).toLocaleString()}/mo spending
+            </span>
+          )}
+          {optimizerResult?.best && (
+            <span style={{
+              fontSize: 11, fontWeight: 700, color: '#C41230',
+              background: '#FFF5F6', border: '1px solid #C41230',
+              borderRadius: 4, padding: '3px 8px', whiteSpace: 'nowrap',
+            }}>
+              🏆 Best: {optimizerResult.best.shortName} · {optimizerResult.best.annual >= 0 ? '+' : ''}${optimizerResult.best.annual}/yr
+            </span>
+          )}
+        </div>
+      )}
+
       <div style={{
         padding: '12px 16px', background: '#F4F4F4',
         borderBottom: '1px solid #D8D8D8',
         display: 'flex', gap: 8, flexWrap: 'wrap',
         alignItems: 'center',
+        overflowX: 'auto',
       }}>
         <span style={{ fontSize: 12, color: '#6B6B6B', fontWeight: 700, whiteSpace: 'nowrap' }}>Try asking:</span>
         {SUGGESTED_QUESTIONS.map(q => (
@@ -146,7 +175,7 @@ export default function ClaraChat({ spending, optimizerResult }) {
       </div>
 
       <div style={{
-        height: 380, overflowY: 'auto', padding: '16px',
+        height: 'clamp(320px, 45vh, 520px)', overflowY: 'auto', padding: '16px',
         display: 'flex', flexDirection: 'column', gap: 16,
         background: '#F4F4F4',
       }}>

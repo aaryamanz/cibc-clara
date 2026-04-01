@@ -75,6 +75,18 @@ export default function SpendingInput({ spending, setSpending, onAnalyse }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <span style={{ fontSize: 20 }}>{cat.emoji}</span>
                   <span style={{ fontSize: 15, fontWeight: 600, color: '#2C2C2C' }}>{cat.label}</span>
+                  {total > 0 && (
+                    <span style={{
+                      fontSize: 11, fontWeight: 700,
+                      color: '#6B6B6B',
+                      background: '#F4F4F4',
+                      border: '1px solid #D8D8D8',
+                      borderRadius: 4,
+                      padding: '2px 6px',
+                    }}>
+                      {Math.round((spending[cat.key] / total) * 100)}%
+                    </span>
+                  )}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ fontSize: 13, color: '#6B6B6B' }}>/mo</span>
